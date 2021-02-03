@@ -66,14 +66,13 @@ func (auth *Auth) InsertStockTransfer(strnf *StockTransferRequest) (r *http.Resp
 
 	u, _ := url.ParseRequestURI(baseURL)
 	u.Path = "/v1/inventory/stock-transfer"
-	//data := PopulateData(strnf)
-	//urlStr := u.String()
+	urlStr := u.String()
 
 	//client := &http.Client{}
 
 	//req , err := http.NewRequest(http.MethodPost, urlStr,strings.NewReader(data.Encode()))
 
-	resp, err := http.Post("/v1/inventory/stock-transfer", "application/json; charset=utf-8", bytes.NewBuffer(jsonReq))
+	resp, err := http.Post(urlStr, "application/json; charset=utf-8", bytes.NewBuffer(jsonReq))
 	if err != nil {
 		log.Fatalln(err)
 	}
