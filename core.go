@@ -32,7 +32,7 @@ type Auth struct {
 
 // GetStockTransferByID ...
 func (auth *Auth) GetStockTransferByID(id string) (r http.Response, e error) {
-	if auth.credentials == "" {
+	if auth.Credentials == "" {
 		log.Fatalln("missing or malformed jwt")
 		r.Status = "fail"
 		return
@@ -45,7 +45,7 @@ func (auth *Auth) GetStockTransferByID(id string) (r http.Response, e error) {
 		log.Fatalln(err)
 	}
 
-	req.Header.Add("Authorization", bearer+auth.credentials)
+	req.Header.Add("Authorization", bearer+auth.Credentials)
 	client := &http.Client{}
 	resp, e = client.Do(req)
 	if err != nil {
