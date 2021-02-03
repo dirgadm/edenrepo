@@ -72,6 +72,7 @@ func (auth *Auth) InsertStockTransfer(strnf *StockTransferRequest) (r *http.Resp
 
 	req, err := http.NewRequest(http.MethodPost, urlStr, bytes.NewBuffer(jsonReq))
 	req.Header.Add("Authorization", bearer+auth.Credentials)
+	req.Header.Add("Content-Type", "application/json")
 	if err != nil {
 		log.Fatalln(err)
 	}
