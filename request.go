@@ -1,15 +1,15 @@
 package edenrepo
 
 type StockTransferRequest struct {
-	RecognitionDate    string                      `json:"recognition_date" valid:"required"`
-	OriginID           string                      `json:"origin_id" valid:"required"`
-	DestinationID      string                      `json:"destination_id" valid:"required"`
-	DestinationAddress string                      `json:"destination_address"`
-	EtaDate            string                      `json:"eta_date" valid:"required"`
-	EtaTime            string                      `json:"eta_time" valid:"required"`
-	Note               string                      `json:"note"`
-	TotalCost          float32                     `json:"total_cost" valid:"required"`
-	StockTransferItems []*StockTransferItemRequest `json:"stock_transfer_items" valid:"required"`
+	RecognitionDate    string                     `json:"recognition_date" valid:"required"`
+	OriginID           string                     `json:"origin_id" valid:"required"`
+	DestinationID      string                     `json:"destination_id" valid:"required"`
+	DestinationAddress string                     `json:"destination_address"`
+	EtaDate            string                     `json:"eta_date" valid:"required"`
+	EtaTime            string                     `json:"eta_time" valid:"required"`
+	Note               string                     `json:"note"`
+	TotalCost          float32                    `json:"total_cost" valid:"required"`
+	StockTransferItems []StockTransferItemRequest `json:"stock_transfer_items" valid:"required"`
 }
 
 type StockTransferItemRequest struct {
