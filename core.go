@@ -7,7 +7,7 @@ import (
 
 // CoreGateway ...
 type Auth struct {
-	credentials string
+	Credentials string
 }
 
 // Call : Base Method to call Core API
