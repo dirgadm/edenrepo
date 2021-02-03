@@ -88,6 +88,34 @@ func (auth *Auth) InsertStockTransfer(strnf *StockTransferRequest) (r *http.Resp
 	return resp, nil
 }
 
+// InsertStockTransfer ...
+func (auth *Auth) UpdateStockTransfer(strnf *StockTransferRequest, id string) (r *http.Response, e error) {
+	jsonReq, e := json.Marshal(strnf)
+
+	u, _ := url.ParseRequestURI(baseURL)
+	u.Path = "/v1/inventory/stock-transfer/" + id
+	urlStr := u.String()
+
+	//client := &http.Client{}
+
+	req, err := http.NewRequest(http.MethodPut, urlStr, bytes.NewBuffer(jsonReq))
+	req.Header.Add("Authorization", bearer+auth.Credentials)
+	req.Header.Add("Content-Type", "application/json")
+	if err != nil {
+		log.Fatalln(err)
+	}
+	//cr := StockTransferRequest{}
+
+	client := &http.Client{}
+	resp, e := client.Do(req)
+	if err != nil {
+		log.Fatalln(e.Error())
+		return
+	}
+
+	return resp, nil
+}
+
 // PopulateData ..
 func PopulateData(strnf *StockTransferRequest) (v url.Values) {
 	data := url.Values{}
