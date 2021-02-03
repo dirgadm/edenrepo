@@ -70,14 +70,19 @@ func (auth *Auth) InsertStockTransfer(strnf *StockTransferRequest) (r *http.Resp
 
 	//client := &http.Client{}
 
-	//req , err := http.NewRequest(http.MethodPost, urlStr,strings.NewReader(data.Encode()))
-
-	resp, err := http.Post(urlStr, "application/json; charset=utf-8", bytes.NewBuffer(jsonReq))
+	req, err := http.NewRequest(http.MethodPost, urlStr, bytes.NewBuffer(jsonReq))
+	req.Header.Add("Authorization", bearer+auth.Credentials)
 	if err != nil {
 		log.Fatalln(err)
 	}
-	resp.Header.Add("Authorization", bearer+auth.Credentials)
 	//cr := StockTransferRequest{}
+
+	client := &http.Client{}
+	resp, e := client.Do(req)
+	if err != nil {
+		log.Fatalln(e.Error())
+		return
+	}
 
 	return resp, nil
 }
