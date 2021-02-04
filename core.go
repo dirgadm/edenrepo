@@ -34,6 +34,38 @@ type Auth struct {
 //	return err
 //}
 
+// GetAllStockTransfer ...
+func (auth *Auth) GetAllStockTransfer(values url.Values) (r *http.Response, e error) {
+	if auth.Credentials == "" {
+		log.Fatalln("missing or malformed jwt")
+		r.Status = "fail"
+		return
+	}
+	resp := &http.Response{}
+
+	// check whether url have querystring or not
+	var uri = baseURL + "/v1/inventory/stock-transfer"
+	queryString, e := queryStringBuilder(values)
+	if e == nil {
+		uri += queryString
+	}
+
+	req, err := http.NewRequest("GET", uri, nil)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	req.Header.Add("Authorization", bearer+auth.Credentials)
+	client := &http.Client{}
+
+	resp, e = client.Do(req)
+	if err != nil {
+		log.Fatalln(e.Error())
+		return
+	}
+	return resp, nil
+}
+
 // GetStockTransferByID ...
 func (auth *Auth) GetStockTransferByID(id string) (r *http.Response, e error) {
 	if auth.Credentials == "" {
@@ -62,6 +94,11 @@ func (auth *Auth) GetStockTransferByID(id string) (r *http.Response, e error) {
 
 // InsertStockTransfer ...
 func (auth *Auth) InsertStockTransfer(strnf *StockTransferRequest) (r *http.Response, e error) {
+	if auth.Credentials == "" {
+		log.Fatalln("missing or malformed jwt")
+		r.Status = "fail"
+		return
+	}
 	jsonReq, e := json.Marshal(strnf)
 
 	u, _ := url.ParseRequestURI(baseURL)
@@ -90,6 +127,11 @@ func (auth *Auth) InsertStockTransfer(strnf *StockTransferRequest) (r *http.Resp
 
 // InsertStockTransfer ...
 func (auth *Auth) UpdateStockTransfer(strnf *StockTransferRequest, id string) (r *http.Response, e error) {
+	if auth.Credentials == "" {
+		log.Fatalln("missing or malformed jwt")
+		r.Status = "fail"
+		return
+	}
 	jsonReq, e := json.Marshal(strnf)
 
 	u, _ := url.ParseRequestURI(baseURL)
