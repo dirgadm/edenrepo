@@ -44,7 +44,7 @@ func (auth *Auth) GetAllStockTransfer(values url.Values) (r *http.Response, e er
 	resp := &http.Response{}
 
 	// check whether url have querystring or not
-	var uri = baseURL + "/v1/inventory/stock-transfer"
+	var uri = baseURL + "/v1/inventory/stock-transfer/vendor"
 	queryString, e := queryStringBuilder(values)
 	if e == nil {
 		uri += queryString
@@ -75,7 +75,7 @@ func (auth *Auth) GetStockTransferByID(id string) (r *http.Response, e error) {
 	}
 	resp := &http.Response{}
 
-	url := baseURL + "/v1/inventory/stock-transfer/" + id + ""
+	url := baseURL + "/v1/inventory/stock-transfer/" + id + "/vendor"
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		log.Fatalln(err)
@@ -102,7 +102,7 @@ func (auth *Auth) InsertStockTransfer(strnf *StockTransferRequest) (r *http.Resp
 	jsonReq, e := json.Marshal(strnf)
 
 	u, _ := url.ParseRequestURI(baseURL)
-	u.Path = "/v1/inventory/stock-transfer"
+	u.Path = "/v1/inventory/stock-transfer/vendor"
 	urlStr := u.String()
 
 	//client := &http.Client{}
@@ -135,7 +135,7 @@ func (auth *Auth) UpdateStockTransfer(strnf *StockTransferRequest, id string) (r
 	jsonReq, e := json.Marshal(strnf)
 
 	u, _ := url.ParseRequestURI(baseURL)
-	u.Path = "/v1/inventory/stock-transfer/" + id
+	u.Path = "/v1/inventory/stock-transfer/" + id + "/vendor"
 	urlStr := u.String()
 
 	//client := &http.Client{}
