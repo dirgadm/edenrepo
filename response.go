@@ -2,6 +2,109 @@ package edenrepo
 
 import "time"
 
+// StockTransferResponse ...
+type StockTransferResponse struct {
+	Status string `json:"status"`
+	Data   []struct {
+		ID              string    `json:"id"`
+		DocumentCode    string    `json:"document_code"`
+		RecognitionDate time.Time `json:"recognition_date"`
+		Origin          struct {
+			ID                    string    `json:"id"`
+			WarehouseCode         string    `json:"warehouse_code"`
+			WarehouseName         string    `json:"warehouse_name"`
+			Note                  string    `json:"note"`
+			IsDeleted             int       `json:"is_deleted"`
+			Address               string    `json:"address"`
+			PicName               string    `json:"pic_name"`
+			PhoneNumber           string    `json:"phone_number"`
+			AltPhoneNumber        string    `json:"alt_phone_number"`
+			SubDistrictID         int       `json:"sub_district_id"`
+			IsArchived            int       `json:"is_archived"`
+			CreatedAt             time.Time `json:"created_at"`
+			CreatedBy             int       `json:"created_by"`
+			CreatedByName         string    `json:"created_by_name"`
+			CreatedByEmail        string    `json:"created_by_email"`
+			LastUpdatedAt         time.Time `json:"last_updated_at"`
+			LastUpdatedBy         int       `json:"last_updated_by"`
+			LastUpdatedByName     string    `json:"last_updated_by_name"`
+			LastUpdatedByEmail    string    `json:"last_updated_by_email"`
+			DeletedAt             time.Time `json:"deleted_at"`
+			DeletedBy             int       `json:"deleted_by"`
+			DeletedByName         string    `json:"deleted_by_name"`
+			DeletedByEmail        string    `json:"deleted_by_email"`
+			DeletionNote          string    `json:"deletion_note"`
+			LastArchivedAt        time.Time `json:"last_archived_at"`
+			LastArchivedBy        int       `json:"last_archived_by"`
+			LastArchivedByName    string    `json:"last_archived_by_name"`
+			LastArchivedByEmail   string    `json:"last_archived_by_email"`
+			LastUnarchivedAt      time.Time `json:"last_unarchived_at"`
+			LastUnarchivedBy      int       `json:"last_unarchived_by"`
+			LastUnarchivedByName  string    `json:"last_unarchived_by_name"`
+			LastUnarchivedByEmail string    `json:"last_unarchived_by_email"`
+		} `json:"origin"`
+		Destination struct {
+			ID                    string    `json:"id"`
+			WarehouseCode         string    `json:"warehouse_code"`
+			WarehouseName         string    `json:"warehouse_name"`
+			Note                  string    `json:"note"`
+			IsDeleted             int       `json:"is_deleted"`
+			Address               string    `json:"address"`
+			PicName               string    `json:"pic_name"`
+			PhoneNumber           string    `json:"phone_number"`
+			AltPhoneNumber        string    `json:"alt_phone_number"`
+			SubDistrictID         int       `json:"sub_district_id"`
+			IsArchived            int       `json:"is_archived"`
+			CreatedAt             time.Time `json:"created_at"`
+			CreatedBy             int       `json:"created_by"`
+			CreatedByName         string    `json:"created_by_name"`
+			CreatedByEmail        string    `json:"created_by_email"`
+			LastUpdatedAt         time.Time `json:"last_updated_at"`
+			LastUpdatedBy         int       `json:"last_updated_by"`
+			LastUpdatedByName     string    `json:"last_updated_by_name"`
+			LastUpdatedByEmail    string    `json:"last_updated_by_email"`
+			DeletedAt             time.Time `json:"deleted_at"`
+			DeletedBy             int       `json:"deleted_by"`
+			DeletedByName         string    `json:"deleted_by_name"`
+			DeletedByEmail        string    `json:"deleted_by_email"`
+			DeletionNote          string    `json:"deletion_note"`
+			LastArchivedAt        time.Time `json:"last_archived_at"`
+			LastArchivedBy        int       `json:"last_archived_by"`
+			LastArchivedByName    string    `json:"last_archived_by_name"`
+			LastArchivedByEmail   string    `json:"last_archived_by_email"`
+			LastUnarchivedAt      time.Time `json:"last_unarchived_at"`
+			LastUnarchivedBy      int       `json:"last_unarchived_by"`
+			LastUnarchivedByName  string    `json:"last_unarchived_by_name"`
+			LastUnarchivedByEmail string    `json:"last_unarchived_by_email"`
+		} `json:"destination"`
+		DestinationAddress string    `json:"destination_address"`
+		EtaDate            time.Time `json:"eta_date"`
+		EtaTime            string    `json:"eta_time"`
+		TotalWeight        int       `json:"total_weight"`
+		Note               string    `json:"note"`
+		DocumentStatus     string    `json:"document_status"`
+		CancellationNote   string    `json:"cancellation_note"`
+		CreatedAt          time.Time `json:"created_at"`
+		CreatedBy          int       `json:"created_by"`
+		CreatedByName      string    `json:"created_by_name"`
+		CreatedByEmail     string    `json:"created_by_email"`
+		LastUpdatedAt      time.Time `json:"last_updated_at"`
+		LastUpdatedBy      int       `json:"last_updated_by"`
+		LastUpdatedByName  string    `json:"last_updated_by_name"`
+		LastUpdatedByEmail string    `json:"last_updated_by_email"`
+		CancelledAt        time.Time `json:"cancelled_at"`
+		CancelledBy        int       `json:"cancelled_by"`
+		CancelledByName    string    `json:"cancelled_by_name"`
+		CancelledByEmail   string    `json:"cancelled_by_email"`
+		ConfirmedAt        time.Time `json:"confirmed_at"`
+		ConfirmedBy        int       `json:"confirmed_by"`
+		ConfirmedByName    string    `json:"confirmed_by_name"`
+		ConfirmedByEmail   string    `json:"confirmed_by_email"`
+		TotalCost          int       `json:"total_cost"`
+	} `json:"data"`
+	Total int `json:"total"`
+}
+
 // StockTransferSingleResponse ...
 type StockTransferSingleResponse struct {
 	Status string `json:"status"`
